@@ -41,10 +41,6 @@ class StaticService {
             jcenter()
 
             mavenCentral()
-
-            maven {
-                url "https://dl.bintray.com/giancosta86/Hephaestus"
-            }
         }
     }
 

@@ -1,9 +1,5 @@
 buildscript {
     repositories {
-        maven {
-            url 'https://dl.bintray.com/giancosta86/Hephaestus'
-        }
-
         jcenter()
     }
 
@@ -71,8 +67,6 @@ aurora {
     }
 
     bintray {
-        repo = "Hephaestus"
-
         licenses = ['Apache-2.0']
 
         labels = [

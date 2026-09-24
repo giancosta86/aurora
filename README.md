@@ -69,8 +69,6 @@ Aurora's goal is to reduce boilerplate configuration, by providing the following
 
   3. Maven Central
 
-  4. [Hephaestus](https://bintray.com/giancosta86/Hephaestus)
-
 * Setup a *sources* and a *Javadoc* jar, for Maven deployment. The actual documentation task (**scaladoc**, **groovydoc** or **javadoc**) is automatically inferred
 
 * Generate a POM including:
@@ -210,10 +208,6 @@ At the very beginning of your build script, add:
 buildscript {
     repositories {
         jcenter()
-
-        maven {
-            url 'https://dl.bintray.com/giancosta86/Hephaestus'
-        }
     }
 
     dependencies {
@@ -256,7 +250,7 @@ aurora {
     }
 
     customStartupScripts = true //OPTIONAL. Default: true
-    
+
     commandLineApp = false //OPTIONAL. Default: false
 
     bintray {
@@ -359,5 +353,3 @@ Aurora is employed in a wide variety of open source projects - both libraries an
 * [MoonDeploy](http://gianlucacosta.info/moondeploy/)
 
 * [MoonLicense](https://github.com/giancosta86/MoonLicense)
-
-* [Hephaestus](https://bintray.com/giancosta86/Hephaestus)
