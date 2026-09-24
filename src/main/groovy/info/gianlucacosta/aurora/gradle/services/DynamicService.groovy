@@ -47,8 +47,6 @@ class DynamicService {
 
         setupApplicationFiles()
 
-        setupBintray()
-
         setupTaskDependencies()
     }
 
@@ -64,8 +62,6 @@ class DynamicService {
             hasApplication = project.getPluginManager().hasPlugin("application")
 
             hasMaven = project.getPluginManager().hasPlugin("maven")
-
-            hasBintray = project.getPluginManager().hasPlugin("com.jfrog.bintray")
 
             hasTodo = project.getPluginManager().hasPlugin("com.autoscout24.gradle.todo")
 
@@ -95,11 +91,6 @@ class DynamicService {
 
         if (!auroraSettings.authors) {
             throw new AuroraException("At least an author must be specified")
-        }
-
-
-        if (project.hasBintray && !auroraSettings.bintraySettings) {
-            throw new AuroraException("Missing bintray block")
         }
 
         if (project.hasApplication && auroraSettings.customStartupScripts) {
@@ -150,12 +141,6 @@ class DynamicService {
 
         if (!project.hasJava) {
             throw new AuroraException("Aurora can only be applied to projects having - implicitly or explicitly - the 'java' plugin")
-        }
-
-        if (project.hasBintray) {
-            if (!project.hasMaven) {
-                throw new AuroraException("The 'maven' plugin is required when employing Bintray's plugin with Aurora")
-            }
         }
     }
 
@@ -273,101 +258,6 @@ class DynamicService {
         }
     }
 
-
-
-    private void setupBintray() {
-        if (!project.hasBintray) {
-            Log.info("Skipping Bintray setup")
-            return
-        }
-
-
-        setupBintrayCredentials()
-
-
-        project.bintray {
-            user = auroraSettings.bintraySettings.user
-            key = auroraSettings.bintraySettings.key
-
-            filesSpec {
-                from "${project.buildDir}/libs"
-
-                from("${project.buildDir}/${AuroraPlugin.MAVEN_TEMP_DIRECTORY_NAME}") {
-                    include "*.pom"
-                }
-
-                into "${project.groupId.replace('.', '/')}/${project.artifactId}/${project.version}"
-            }
-
-            dryRun = false
-            publish = false
-
-            pkg {
-                repo = auroraSettings.bintraySettings.repo
-
-                name = project.name
-                desc = project.description
-
-                websiteUrl = project.ext.url
-                issueTrackerUrl = "${project.ext.url}/issues"
-                vcsUrl = "${project.ext.url}.git"
-
-                licenses = auroraSettings.bintraySettings.licenses
-                labels = auroraSettings.bintraySettings.labels
-
-                publicDownloadNumbers = false
-
-                githubRepo = "${auroraSettings.gitHubUser}/${project.name}"
-
-                version {
-                    name = project.version
-                    vcsTag = "v${project.version}"
-
-                    released = new Date()
-
-                    gpg {
-                        sign = true
-                    }
-
-                    mavenCentralSync {
-                        sync = false
-                    }
-                }
-            }
-        }
-    }
-
-
-    private void setupBintrayCredentials() {
-        String sourcePropertyFilePath = System.getenv("BINTRAY_CREDENTIALS_FILE")
-        if (sourcePropertyFilePath == null) {
-            Log.info("Environment variable for Bintray's credentials file not set")
-            return
-        }
-
-        Properties securityProperties = new Properties()
-
-        if (!auroraSettings.bintraySettings.user || !auroraSettings.bintraySettings.key) {
-            File sourcePropertyFile = new File(sourcePropertyFilePath)
-            if (sourcePropertyFile.isFile()) {
-                Log.info("Bintray credentials file found at: ${sourcePropertyFile.getAbsolutePath()}. Now loading...")
-                securityProperties.load(new FileInputStream(sourcePropertyFile))
-            }
-        }
-
-
-        if (!auroraSettings.bintraySettings.user) {
-            Log.info("bintrayUser recovered from Bintray's credentials file")
-            auroraSettings.bintraySettings.user = securityProperties.getProperty("bintrayUser")
-        }
-
-        if (!auroraSettings.bintraySettings.key) {
-            Log.info("key recovered from Bintray's credentials file")
-            auroraSettings.bintraySettings.key = securityProperties.getProperty("bintrayKey")
-        }
-    }
-
-
     private void setupTaskDependencies() {
         project.clean.dependsOn("cleanGenerated")
 
@@ -409,20 +299,6 @@ class DynamicService {
         if (project.hasTodo) {
             project.check.dependsOn("checkTodo")
         }
-
-
-        if (project.hasBintray) {
-            def bintrayDependencies = ["assemble", "check", "assertRelease"]
-
-            project.bintrayUpload.dependsOn(bintrayDependencies)
-
-            Task bintrayRecordingCopy = project.tasks.findByPath("_bintrayRecordingCopy")
-            if (bintrayRecordingCopy != null) {
-                Log.debug("_bintrayRecordingCopy found. Setting its dependencies as well")
-                bintrayRecordingCopy.dependsOn(bintrayDependencies)
-            }
-        }
-
 
         if (project.hasApplication) {
             project.distZip.dependsOn("check")

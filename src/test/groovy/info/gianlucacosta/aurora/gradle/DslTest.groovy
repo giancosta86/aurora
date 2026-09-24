@@ -41,15 +41,6 @@ class DslTest extends GroovyTestCase {
                 url = "localhost"
             }
 
-            bintray {
-                user = "theUser"
-                key = "theKey"
-                repo = "testRepo"
-                licenses = ['Apache-2.0']
-                labels = ["testLabel1", "testLabel2"]
-
-            }
-
             closure.delegate = delegate
             closure.resolveStrategy = Closure.DELEGATE_FIRST
             closure()
@@ -64,18 +55,9 @@ class DslTest extends GroovyTestCase {
         super.tearDown();
     }
 
-
     void test_defaultConfiguration() {
         applyDefaultWith {}
     }
-
-
-    void test_withoutBintraySettingsWithoutBintray() {
-        applyDefaultWith {
-            bintraySettings = null
-        }
-    }
-
 
     void test_auroraSettingsAvailability() {
         applyDefaultWith {}

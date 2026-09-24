@@ -4,7 +4,6 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.3'
         classpath 'info.gianlucacosta.aurora:aurora:8.0'
     }
@@ -13,7 +12,6 @@ buildscript {
 
 apply plugin: 'groovy'
 apply plugin: 'maven'
-apply plugin: 'com.jfrog.bintray'
 apply plugin: 'info.gianlucacosta.moonlicense'
 apply plugin: 'info.gianlucacosta.aurora'
 
@@ -40,7 +38,6 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 
-    testRuntime 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     testRuntime 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.3'
 }
 
@@ -64,17 +61,5 @@ aurora {
     author {
         name = 'Gianluca Costa'
         email = 'gianluca@gianlucacosta.info'
-    }
-
-    bintray {
-        licenses = ['Apache-2.0']
-
-        labels = [
-                'elegant',
-                'projects',
-                'Gradle',
-                'GitHub',
-                'Bintray'
-        ]
     }
 }

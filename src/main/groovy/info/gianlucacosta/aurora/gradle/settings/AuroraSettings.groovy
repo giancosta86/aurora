@@ -13,8 +13,6 @@ class AuroraSettings {
 
     List<Author> authors = new ArrayList<>()
 
-    BintraySettings bintraySettings
-
     boolean commandLineApp = false
 
     JavaVersion requiredJavaVersion
@@ -46,34 +44,6 @@ class AuroraSettings {
 
         authors << author
     }
-
-
-    def bintray(Closure closure) {
-        BintraySettings bintraySettings = new BintraySettings()
-
-        closure.delegate = bintraySettings
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-
-        closure()
-
-        Log.debug("Bintray settings: ${bintraySettings.dump()}")
-
-
-        if (!bintraySettings.repo) {
-            throw new AuroraException("Missing Bintray repo")
-        }
-
-        if (!bintraySettings.licenses) {
-            throw new AuroraException("Missing Bintray licenses")
-        }
-
-        if (!bintraySettings.labels) {
-            throw new AuroraException("Missing Bintray labels")
-        }
-
-        this.bintraySettings = bintraySettings
-    }
-
 
     def javaVersion(Closure closure) {
         JavaVersion requiredJavaVersion = new JavaVersion()
