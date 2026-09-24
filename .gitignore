@@ -1,5 +1,5 @@
-/.gradle/
-/.idea/
-/build/
-/src/generated/
-/*.iml
+.gradle/
+.idea/
+build/
+src/generated/
+*.iml
