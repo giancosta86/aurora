@@ -65,8 +65,6 @@ class DynamicService {
 
             hasTodo = project.getPluginManager().hasPlugin("com.autoscout24.gradle.todo")
 
-            hasMoonLicense = project.getPluginManager().hasPlugin("info.gianlucacosta.moonlicense")
-
             hasMoonDeploy = project.getPluginManager().hasPlugin("info.gianlucacosta.moondeploy")
         }
     }
@@ -267,18 +265,6 @@ class DynamicService {
         project.processGeneratedResources.dependsOn("generateMainIcons")
         project.processGeneratedResources.dependsOn("generateArtifactInfo")
 
-
-        if (project.hasMoonLicense) {
-            project.compileGeneratedJava.dependsOn("setNotices")
-            project.processGeneratedResources.dependsOn("setNotices")
-
-            project.checkGit.dependsOn("setNotices")
-
-            project.setNotices.dependsOn("generateArtifactInfo")
-            project.setNotices.dependsOn("generateMainIcons")
-        }
-
-
         if (project.hasMaven) {
             project.install.dependsOn("check")
             project.assemble.dependsOn("generatePom")
@@ -311,7 +297,7 @@ class DynamicService {
 
             project.generateAppDescriptor.dependsOn("distZip")
 
-            if (project.hasMoonDeploy && project.hasMoonLicense) {
+            if (project.hasMoonDeploy) {
                 project.assemble.dependsOn("generateAppDescriptor")
             }
         }

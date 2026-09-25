@@ -16,8 +16,6 @@ Aurora is a plugin for Gradle that quickly configures a JVM project hosted on Gi
 
 - [TODO](https://github.com/AutoScout24/gradle-todo-plugin)
 
-- [MoonLicense-Gradle](https://github.com/giancosta86/MoonLicense-Gradle)
-
 - [MoonDeploy-Gradle](https://github.com/giancosta86/MoonDeploy-Gradle)
 
 Support for a plugin is enabled only if Aurora detects that such plugin has been applied to the project.
@@ -266,5 +264,3 @@ Aurora is employed in a wide variety of open source projects - both libraries an
 ## Further references
 
 - [MoonDeploy](http://gianlucacosta.info/moondeploy/)
-
-- [MoonLicense](https://github.com/giancosta86/MoonLicense)
