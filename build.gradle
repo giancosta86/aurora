@@ -10,7 +10,7 @@ description = 'Elegant Gradle projects for the JVM'
 
 
 dependencies {
-    generatedCompile localGroovy()
+    //generatedCompile localGroovy()
 
     compile localGroovy()
 
