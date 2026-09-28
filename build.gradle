@@ -1,6 +1,5 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
-apply plugin: 'info.gianlucacosta.aurora'
 
 group = 'info.gianlucacosta.aurora'
 archivesBaseName = 'aurora'
@@ -23,13 +22,4 @@ dependencies {
     compile 'org.jclarion:image4j:0.7'
 
     testCompile 'junit:junit:4.12'
-}
-
-aurora {
-    gitHubUser = 'giancosta86'
-
-    author {
-        name = 'Gianluca Costa'
-        email = 'gianluca@gianlucacosta.info'
-    }
 }
