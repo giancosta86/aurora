@@ -1,14 +1,3 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'info.gianlucacosta.aurora:aurora:8.0'
-    }
-}
-
-
 apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'info.gianlucacosta.aurora'

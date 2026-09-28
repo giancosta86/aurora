@@ -38,8 +38,6 @@ class StaticService {
         project.repositories {
             mavenLocal()
 
-            jcenter()
-
             mavenCentral()
         }
     }

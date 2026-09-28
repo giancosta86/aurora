@@ -56,9 +56,7 @@ Aurora's goal is to reduce boilerplate configuration, by providing the following
 - Add Maven repositories to locate dependencies; the following repositories will be added - in order:
   1. Maven local
 
-  2. JCenter
-
-  3. Maven Central
+  1. Maven Central
 
 - Setup a _sources_ and a _Javadoc_ jar, for Maven deployment. The actual documentation task (**scaladoc**, **groovydoc** or **javadoc**) is automatically inferred
 
@@ -148,10 +146,6 @@ At the very beginning of your build script, add:
 
 ```groovy
 buildscript {
-    repositories {
-        jcenter()
-    }
-
     dependencies {
         classpath 'info.gianlucacosta.aurora:aurora:CHOOSE_VERSION'
     }
