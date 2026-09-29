@@ -1,23 +1,3 @@
-/*§
-  ===========================================================================
-  Aurora
-  ===========================================================================
-  Copyright (C) 2015-2017 Gianluca Costa
-  ===========================================================================
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  ===========================================================================
-*/
-
 package info.gianlucacosta.aurora.gradle.tasks
 
 import groovy.json.StringEscapeUtils
@@ -33,12 +13,7 @@ import org.gradle.api.tasks.TaskAction
 class GenerateArtifactInfoTask extends DefaultTask {
     @TaskAction
     def generateAppInfo() {
-        if (!project.hasMoonLicense) {
-            Log.info("Cannot generate artifact info, as MoonLicense is missing")
-
-            throw new StopExecutionException()
-        }
-
+        //TODO! Check the info injected here! And actually inject them!
 
         String languageDirectoryName = project.mainLanguage
         Log.debug("Language directory name: ${languageDirectoryName}")
@@ -71,7 +46,7 @@ class GenerateArtifactInfoTask extends DefaultTask {
         Log.debug("Source package relative path: ${sourcePackageRelativePath}")
 
 
-        File sourcePackageDirectory = project.file("src/generated/${languageDirectoryName}/${sourcePackageRelativePath}")
+        File sourcePackageDirectory = project.file("${project.buildDir}/generated/${languageDirectoryName}/${sourcePackageRelativePath}")
         Log.debug("Source package directory: ${sourcePackageDirectory}")
 
         if (!sourcePackageDirectory.exists()) {
@@ -102,7 +77,7 @@ class GenerateArtifactInfoTask extends DefaultTask {
 
                 .replace(
                 "@NAME@",
-                StringEscapeUtils.escapeJava(project.moonLicense.productInfo.productName)
+                StringEscapeUtils.escapeJava("<PRODUCT NAME>")
         )
 
                 .replace(
@@ -112,30 +87,22 @@ class GenerateArtifactInfoTask extends DefaultTask {
 
                 .replace(
                 "@COPYRIGHT_YEARS@",
-                StringEscapeUtils.escapeJava(project.moonLicense.getCopyrightYears())
+                StringEscapeUtils.escapeJava("<COPYRIGHT YEARS>")
         )
 
                 .replace(
                 "@COPYRIGHT_HOLDER@",
-                StringEscapeUtils.escapeJava(project.moonLicense.productInfo.copyrightHolder)
+                StringEscapeUtils.escapeJava("<COPYRIGHT HOLDER>")
         )
 
                 .replace(
                 "@LICENSE@",
-                StringEscapeUtils.escapeJava(project.moonLicense.license.name)
+                StringEscapeUtils.escapeJava("<LICENSE NAME>")
         )
 
                 .replace(
                 "@WEBSITE@",
                 StringEscapeUtils.escapeJava(project.url.toString())
-        )
-
-                .replace(
-                "@FACEBOOK_PAGE@",
-                project.facebookPage != null ?
-                        "\"${StringEscapeUtils.escapeJava(project.facebookPage)}\""
-                        :
-                        "null"
         )
 
                 .replace(
