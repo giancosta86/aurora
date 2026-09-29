@@ -3,7 +3,7 @@ apply plugin: 'maven'
 
 group = 'info.gianlucacosta.aurora'
 archivesBaseName = 'aurora'
-version = '9.2'
+version = '10.0.0-SNAPSHOT'
 
 
 description = 'Elegant Gradle projects for the JVM'
