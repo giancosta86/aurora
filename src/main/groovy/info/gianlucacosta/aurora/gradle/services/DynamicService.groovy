@@ -46,6 +46,8 @@ class DynamicService {
         setupApplicationFiles()
 
         setupTaskDependencies()
+
+        setupSourceSets()
     }
 
 
@@ -250,6 +252,43 @@ class DynamicService {
 
             if (project.hasMoonDeploy) {
                 project.assemble.dependsOn("generateAppDescriptor")
+            }
+        }
+    }
+
+
+    private void setupSourceSets() {
+        Log.debug("Defining the source sets...")
+
+        project.sourceSets {
+            main {
+                java {
+                    srcDir "${project.buildDir}/generated"
+                }
+            }
+        }
+
+        if (project.hasScala) {
+            main {
+                scala {
+                    srcDir "${project.buildDir}/generated"
+                }
+            }
+        }
+
+        if (project.hasGroovy) {
+            main {
+                groovy {
+                    srcDir "${project.buildDir}/generated"
+                }
+            }
+        }
+
+        project.sourceSets {
+            main {
+                resources {
+                    srcDir "${project.buildDir}/generated/resources"
+                }
             }
         }
     }

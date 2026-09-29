@@ -17,13 +17,18 @@ class StaticService {
 
 
     def run() {
+        setupPlugins()
+
         declareAuroraSettings()
 
         setupRepositories()
 
-        setupSourceSets()
-
         createTasks()
+    }
+
+
+    private void setupPlugins() {
+        project.plugins.apply("java")
     }
 
 
@@ -39,26 +44,6 @@ class StaticService {
             mavenLocal()
 
             mavenCentral()
-        }
-    }
-
-
-    private void setupSourceSets() {
-        project.plugins.apply("java")
-
-        Log.debug("Defining the source sets...")
-
-        //TODO! Handle the main language!
-        project.sourceSets {
-            main {
-                java {
-                    srcDir "${project.buildDir}/generated"
-                }
-
-                resources {
-                    srcDir "${project.buildDir}/generated/resources"
-                }
-            }
         }
     }
 

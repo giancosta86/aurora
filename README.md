@@ -42,9 +42,7 @@ Aurora's goal is to reduce boilerplate configuration, by providing the following
 
 - Set **project.artifactId** to the string value of _project.archivesBaseName_. It cannot be null or empty, and must be lowercase
 
-- Add a **generated** source set, located in the **build/generated** directory tree, for Aurora tasks and for other plugins that generate source files and resources.
-
-- The output of the **generated** source set is added to _compileClasspath_ and _runtimeClasspath_ of the default source sets (**main** and **test**), as well as to **run**'s classpath (provided by the _application_ plugin)
+- Add a **generated** source set, located in the **build/generated** directory tree.
 
 - Generate an **ArtifactInfo** class/object, providing information about the project. It will be located under **build/generated**:
   - generally, in a subpackage named according to the _artifact id_
@@ -147,12 +145,6 @@ apply plugin: 'info.gianlucacosta.aurora'
 ```
 
 Aurora can be applied before or after other plugins, _but_ its **aurora{...}** DSL block must occur after every _apply_ introducing a plugin referenced by Aurora.
-
-**NOTE**: when using Aurora with a language plugin - such as **scala** or **groovy**, you'll most probably need to add a **generatedCompile** item to your **dependencies** block, usually referencing the same compiler library as **compile** - in particular:
-
-- _org.scala-lang:scala-library:YOUR_SCALA_VERSION_ for Scala
-
-- _localGroovy()_ (or a specific Groovy version) for Groovy
 
 ## Usage
 
