@@ -97,8 +97,6 @@ Aurora's goal is to reduce boilerplate configuration, by providing the following
 
 - **cleanGenerated**: deletes the **src/generated** directory
 
-- **assertRelease**: fails if the **project.isRelease** flag has been set to _false_ (i.e., if **project.version** ends with _-SNAPSHOT_)
-
 - **generateArtifactInfo**: generates, under **src/generated**, an artifact source file exposing the project information
 
 - **generateAppDescriptor**: creates a [MoonDeploy](http://gianlucacosta.info/moondeploy) app descriptor based on sensible defaults, in particular:
