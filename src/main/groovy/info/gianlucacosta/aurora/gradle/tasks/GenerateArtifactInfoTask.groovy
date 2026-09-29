@@ -13,12 +13,7 @@ import org.gradle.api.tasks.TaskAction
 class GenerateArtifactInfoTask extends DefaultTask {
     @TaskAction
     def generateAppInfo() {
-        if (!project.hasMoonLicense) {
-            Log.info("Cannot generate artifact info, as MoonLicense is missing")
-
-            throw new StopExecutionException()
-        }
-
+        //TODO! Check the info injected here! And actually inject them!
 
         String languageDirectoryName = project.mainLanguage
         Log.debug("Language directory name: ${languageDirectoryName}")
@@ -82,7 +77,7 @@ class GenerateArtifactInfoTask extends DefaultTask {
 
                 .replace(
                 "@NAME@",
-                StringEscapeUtils.escapeJava(project.moonLicense.productInfo.productName)
+                StringEscapeUtils.escapeJava("<PRODUCT NAME>")
         )
 
                 .replace(
@@ -92,30 +87,22 @@ class GenerateArtifactInfoTask extends DefaultTask {
 
                 .replace(
                 "@COPYRIGHT_YEARS@",
-                StringEscapeUtils.escapeJava(project.moonLicense.getCopyrightYears())
+                StringEscapeUtils.escapeJava("<COPYRIGHT YEARS>")
         )
 
                 .replace(
                 "@COPYRIGHT_HOLDER@",
-                StringEscapeUtils.escapeJava(project.moonLicense.productInfo.copyrightHolder)
+                StringEscapeUtils.escapeJava("<COPYRIGHT HOLDER>")
         )
 
                 .replace(
                 "@LICENSE@",
-                StringEscapeUtils.escapeJava(project.moonLicense.license.name)
+                StringEscapeUtils.escapeJava("<LICENSE NAME>")
         )
 
                 .replace(
                 "@WEBSITE@",
                 StringEscapeUtils.escapeJava(project.url.toString())
-        )
-
-                .replace(
-                "@FACEBOOK_PAGE@",
-                project.facebookPage != null ?
-                        "\"${StringEscapeUtils.escapeJava(project.facebookPage)}\""
-                        :
-                        "null"
         )
 
                 .replace(
