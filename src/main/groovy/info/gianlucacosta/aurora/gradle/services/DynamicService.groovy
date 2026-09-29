@@ -269,17 +269,21 @@ class DynamicService {
         }
 
         if (project.hasScala) {
-            main {
-                scala {
-                    srcDir "${project.buildDir}/generated"
+            project.sourceSets {
+                main {
+                    scala {
+                        srcDir "${project.buildDir}/generated"
+                    }
                 }
             }
         }
 
         if (project.hasGroovy) {
-            main {
-                groovy {
-                    srcDir "${project.buildDir}/generated"
+            project.sourceSets {
+                main {
+                    groovy {
+                        srcDir "${project.buildDir}/generated"
+                    }
                 }
             }
         }
