@@ -24,7 +24,7 @@ class GenerateCustomStartupScripts extends DefaultTask {
 
 
     private void createAdditionalScripts() {
-        File scriptsTempDirectory = new File("build/generated/dist/bin")
+        File scriptsTempDirectory = new File("${project.buildDir}/generated/dist/bin")
         scriptsTempDirectory.mkdirs()
 
         [

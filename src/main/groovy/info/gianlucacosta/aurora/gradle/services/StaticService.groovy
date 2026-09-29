@@ -48,18 +48,16 @@ class StaticService {
 
         Log.debug("Defining the source sets...")
 
-
+        //TODO! Handle the main language!
         project.sourceSets {
-            generated
-
             main {
-                compileClasspath += project.sourceSets.generated.output
-                runtimeClasspath += project.sourceSets.generated.output
-            }
+                java {
+                    srcDir "${project.buildDir}/generated"
+                }
 
-            test {
-                compileClasspath += project.sourceSets.generated.output
-                runtimeClasspath += project.sourceSets.generated.output
+                resources {
+                    srcDir "${project.buildDir}/generated/resources"
+                }
             }
         }
     }

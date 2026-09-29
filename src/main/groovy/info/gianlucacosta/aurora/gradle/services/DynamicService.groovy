@@ -184,11 +184,6 @@ class DynamicService {
 
 
     private void setupArtifacts() {
-        project.jar {
-            from project.sourceSets.generated.output
-        }
-
-
         if (!project.hasMaven) {
             Log.info("Skipping additional artifacts configuration")
             return
@@ -225,22 +220,15 @@ class DynamicService {
         project.distributions {
             main {
                 contents {
-                    from("build/generated/dist")
+                    from("${project.buildDir}/generated/dist")
                 }
             }
-        }
-
-        project.run {
-            classpath += project.sourceSets.generated.output
         }
     }
 
     private void setupTaskDependencies() {
-        project.compileGeneratedJava.dependsOn("generateMainIcons")
-        project.compileGeneratedJava.dependsOn("generateArtifactInfo")
-
-        project.processGeneratedResources.dependsOn("generateMainIcons")
-        project.processGeneratedResources.dependsOn("generateArtifactInfo")
+        project.compileJava.dependsOn("generateMainIcons")
+        project.compileJava.dependsOn("generateArtifactInfo")
 
         if (project.hasMaven) {
             project.assemble.dependsOn("generatePom")

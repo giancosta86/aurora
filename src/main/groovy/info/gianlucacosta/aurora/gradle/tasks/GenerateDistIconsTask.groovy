@@ -19,7 +19,7 @@ class GenerateDistIconsTask extends DefaultTask {
             throw new StopExecutionException()
         }
 
-        File distDirectory = project.file("build/generated/dist")
+        File distDirectory = project.file("${project.buildDir}/generated/dist")
         distDirectory.mkdirs()
 
         File pngIconFile = new File(distDirectory, "mainIcon.png")
