@@ -70,7 +70,6 @@ class StaticService {
 
         project.tasks.create(name: "cleanGenerated", type: CleanGeneratedTask)
         project.tasks.create(name: 'assertRelease', type: AssertReleaseTask)
-        project.tasks.create(name: "checkDependencies", type: CheckDependenciesTask)
         project.tasks.create(name: "generateArtifactInfo", type: GenerateArtifactInfoTask)
         project.tasks.create(name: "generateAppDescriptor", type: GenerateAppDescriptorTask)
         project.tasks.create(name: "generateMainIcons", type: GenerateMainIconsTask)

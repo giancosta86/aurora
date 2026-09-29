@@ -99,8 +99,6 @@ Aurora's goal is to reduce boilerplate configuration, by providing the following
 
 - **assertRelease**: fails if the **project.isRelease** flag has been set to _false_ (i.e., if **project.version** ends with _-SNAPSHOT_)
 
-- **checkDependencies**: ensures that the project does not depend on any SNAPSHOT library. By default, it is added to the build graph _if project.isRelease is true_
-
 - **generateArtifactInfo**: generates, under **src/generated**, an artifact source file exposing the project information
 
 - **generateAppDescriptor**: creates a [MoonDeploy](http://gianlucacosta.info/moondeploy) app descriptor based on sensible defaults, in particular:

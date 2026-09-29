@@ -276,11 +276,6 @@ class DynamicService {
         }
 
 
-        if (project.isRelease) {
-            project.check.dependsOn("checkDependencies")
-        }
-
-
         if (project.hasTodo) {
             project.check.dependsOn("checkTodo")
         }
