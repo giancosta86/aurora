@@ -85,8 +85,6 @@ Aurora's goal is to reduce boilerplate configuration, by providing the following
 
 - Generate a **MainIcon** class to easily access the above icons
 
-- The **checkTodo** task provided by the _todo_ plugin will fail if **project.isRelease** is _true_ and there are active TODOs
-
 - Provide _info_ and _debug_ logging messages
 
 - Setup tasks dependencies (see the graph below)

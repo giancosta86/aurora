@@ -43,8 +43,6 @@ class DynamicService {
 
         setupArtifacts()
 
-        setupTodo()
-
         setupApplicationFiles()
 
         setupTaskDependencies()
@@ -62,8 +60,6 @@ class DynamicService {
             hasApplication = project.getPluginManager().hasPlugin("application")
 
             hasMaven = project.getPluginManager().hasPlugin("maven")
-
-            hasTodo = project.getPluginManager().hasPlugin("com.autoscout24.gradle.todo")
 
             hasMoonDeploy = project.getPluginManager().hasPlugin("info.gianlucacosta.moondeploy")
         }
@@ -167,7 +163,6 @@ class DynamicService {
     }
 
 
-
     private void checkArtifactInfo() {
         if (!project.groupId) {
             throw new AuroraException("The group id must NOT be empty")
@@ -221,16 +216,6 @@ class DynamicService {
     }
 
 
-    private void setupTodo() {
-        if (!project.hasTodo) {
-            Log.info("Skipping todo configuration")
-            return
-        }
-
-        project.todo.failIfFound = project.isRelease
-    }
-
-
     private void setupApplicationFiles() {
         if (!project.hasApplication) {
             Log.info("Skipping the setup of application files")
@@ -258,7 +243,6 @@ class DynamicService {
         project.processGeneratedResources.dependsOn("generateArtifactInfo")
 
         if (project.hasMaven) {
-            project.install.dependsOn("check")
             project.assemble.dependsOn("generatePom")
         }
 
@@ -267,17 +251,10 @@ class DynamicService {
             project.scaladoc.dependsOn("setupScaladoc")
         }
 
-
-        if (project.hasTodo) {
-            project.check.dependsOn("checkTodo")
-        }
-
         if (project.hasApplication) {
-            project.distZip.dependsOn("check")
             project.distZip.dependsOn("generateDistIcons")
             project.distZip.dependsOn("generateCustomStartupScripts")
 
-            project.distTar.dependsOn("check")
             project.distTar.dependsOn("generateDistIcons")
             project.distTar.dependsOn("generateCustomStartupScripts")
 
