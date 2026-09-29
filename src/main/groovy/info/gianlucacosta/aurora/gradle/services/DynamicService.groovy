@@ -257,8 +257,6 @@ class DynamicService {
     }
 
     private void setupTaskDependencies() {
-        project.clean.dependsOn("cleanGenerated")
-
         project.compileGeneratedJava.dependsOn("generateMainIcons")
         project.compileGeneratedJava.dependsOn("generateArtifactInfo")
 

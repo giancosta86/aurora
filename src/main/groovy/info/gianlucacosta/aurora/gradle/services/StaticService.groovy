@@ -68,7 +68,6 @@ class StaticService {
     private void createTasks() {
         Log.debug("Creating tasks...")
 
-        project.tasks.create(name: "cleanGenerated", type: CleanGeneratedTask)
         project.tasks.create(name: "generateArtifactInfo", type: GenerateArtifactInfoTask)
         project.tasks.create(name: "generateAppDescriptor", type: GenerateAppDescriptorTask)
         project.tasks.create(name: "generateMainIcons", type: GenerateMainIconsTask)

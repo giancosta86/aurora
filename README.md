@@ -44,7 +44,7 @@ Aurora's goal is to reduce boilerplate configuration, by providing the following
 
 - Initialize **project.ext.facebookPage** to _null_ - if it is not already set
 
-- Add a **generated** source set, located in the **src/generated** directory tree, for Aurora tasks and for other plugins that generate source files and resources. Such directory is automatically removed by the **cleanGenerated** task as well as by the **clean** task
+- Add a **generated** source set, located in the **src/generated** directory tree, for Aurora tasks and for other plugins that generate source files and resources.
 
 - The output of the **generated** source set is added to _compileClasspath_ and _runtimeClasspath_ of the default source sets (**main** and **test**), as well as to **run**'s classpath (provided by the _application_ plugin)
 
@@ -94,8 +94,6 @@ Aurora's goal is to reduce boilerplate configuration, by providing the following
 - Setup tasks dependencies (see the graph below)
 
 ## Tasks
-
-- **cleanGenerated**: deletes the **src/generated** directory
 
 - **generateArtifactInfo**: generates, under **src/generated**, an artifact source file exposing the project information
 
