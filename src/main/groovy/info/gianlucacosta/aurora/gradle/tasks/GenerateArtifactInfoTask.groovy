@@ -51,7 +51,7 @@ class GenerateArtifactInfoTask extends DefaultTask {
         Log.debug("Source package relative path: ${sourcePackageRelativePath}")
 
 
-        File sourcePackageDirectory = project.file("src/generated/${languageDirectoryName}/${sourcePackageRelativePath}")
+        File sourcePackageDirectory = project.file("build/generated/${languageDirectoryName}/${sourcePackageRelativePath}")
         Log.debug("Source package directory: ${sourcePackageDirectory}")
 
         if (!sourcePackageDirectory.exists()) {

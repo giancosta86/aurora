@@ -246,7 +246,7 @@ class DynamicService {
         project.distributions {
             main {
                 contents {
-                    from("src/generated/dist")
+                    from("build/generated/dist")
                 }
             }
         }

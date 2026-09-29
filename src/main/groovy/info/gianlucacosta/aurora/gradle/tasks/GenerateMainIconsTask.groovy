@@ -24,7 +24,7 @@ class GenerateMainIconsTask extends DefaultTask {
             throw new StopExecutionException()
         }
 
-        File iconResourcesDir = project.file("src/generated/resources/${project.groupId.replace('.', '/')}/icons")
+        File iconResourcesDir = project.file("build/generated/resources/${project.groupId.replace('.', '/')}/icons")
         iconResourcesDir.mkdirs()
 
         Log.debug("Source SVG icon file: ${svgSourceFile.getAbsolutePath()}")
@@ -42,7 +42,7 @@ class GenerateMainIconsTask extends DefaultTask {
         String templateString = this.getClass().getResource("MainIcon.${project.mainLanguage}.txt").text
         String helperClassText = templateString.replace("@GROUP_ID@", project.groupId)
 
-        File helperClassPackageDirectory = project.file("src/generated/${project.mainLanguage}/${project.groupId.replace('.', '/')}/icons")
+        File helperClassPackageDirectory = project.file("build/generated/${project.mainLanguage}/${project.groupId.replace('.', '/')}/icons")
         Log.debug("Helper class package path: ${helperClassPackageDirectory.getAbsolutePath()}")
 
         helperClassPackageDirectory.mkdirs()
