@@ -42,8 +42,6 @@ Aurora's goal is to reduce boilerplate configuration, by providing the following
 
 - Set **project.artifactId** to the string value of _project.archivesBaseName_. It cannot be null or empty, and must be lowercase
 
-- Initialize **project.ext.facebookPage** to _null_ - if it is not already set
-
 - Add a **generated** source set, located in the **build/generated** directory tree, for Aurora tasks and for other plugins that generate source files and resources.
 
 - The output of the **generated** source set is added to _compileClasspath_ and _runtimeClasspath_ of the default source sets (**main** and **test**), as well as to **run**'s classpath (provided by the _application_ plugin)

@@ -144,12 +144,6 @@ class DynamicService {
 
 
     private void setupProjectProperties() {
-        if (!project.ext.has("facebookPage")) {
-            project.ext.facebookPage = null
-        }
-
-        Log.info("Facebook page: ${project.facebookPage}")
-
         project.ext {
             groupId = project.group.toString()
 
