@@ -277,7 +277,6 @@ class DynamicService {
 
 
         if (project.isRelease) {
-            project.check.dependsOn("checkGit")
             project.check.dependsOn("checkDependencies")
         }
 
